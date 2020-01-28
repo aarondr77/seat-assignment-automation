@@ -3,25 +3,25 @@ import queue;
 
 class Theatre:
     
-    def __init__(self, leftRowSize, rightRowSize, numberOfRows):
+    def __init__(self, left_row_size, right_row_size, number_of_rows):
         self.leftRows = []
         self.rightRows = []
 
         leftRow = []
         rightRow = []
-        for i in range(leftRowSize):
+        for i in range(left_row_size):
             leftRow.append("_")
-        for i in range(rightRowSize):
+        for i in range(right_row_size):
             rightRow.append("_")
         
-        for i in range(numberOfRows):
+        for i in range(number_of_rows):
             self.leftRows.append((copy.deepcopy(leftRow)))
             self.rightRows.append((copy.deepcopy(rightRow)))
 
 class Group: 
     
-    def __init__(self, groupInfo):
-        (self.name, self.size, self.priority) = groupInfo
+    def __init__(self, group_info):
+        (self.name, self.size, self.priority) = group_info
 
     def __lt__(self, other):
 
@@ -29,16 +29,7 @@ class Group:
             return self.size > other.size  
         return self.priority < other.priority
 
-    def getName(self):
-        return self.name
-
-    def getSize(self):
-        return self.size
-
-    def getPriority(self):
-        return self.priority
-
-def makeGroupQueue(groups):
+def make_group_queue(groups):
     q = queue.PriorityQueue()
     for g in groups:
         q.put(g)
@@ -58,13 +49,13 @@ sampleGroups = [
 
 # Expected Ordering: A, H, C, D, F/G, E, B 
 
-groupObjList = []
+group_obj_list = []
 for g in sampleGroups:
     groupObj = Group(g)
-    groupObjList.append(groupObj)
-q = makeGroupQueue(groupObjList)
+    group_obj_list.append(groupObj)
+q = make_group_queue(group_obj_list)
 while not q.empty():
     o = q.get(0)
-    print ("Name: " + o.getName())
+    print ("Name: " + o.name)
 
 
